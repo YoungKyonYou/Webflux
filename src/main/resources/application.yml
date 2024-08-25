@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: webflux-playground
+  sql:
+    init:
+      data-locations: classpath:sql/data.sql
+sec: sec03
+#logging:
+#  level:
+#    org.springframework.r2dbc: DEBUG
