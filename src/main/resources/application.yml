@@ -4,7 +4,7 @@ spring:
   sql:
     init:
       data-locations: classpath:sql/data.sql
-sec: sec03
+sec: sec05
 #logging:
 #  level:
 #    org.springframework.r2dbc: DEBUG
