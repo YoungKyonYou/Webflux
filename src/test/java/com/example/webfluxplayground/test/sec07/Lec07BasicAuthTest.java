@@ -1,21 +1,20 @@
 package com.example.webfluxplayground.test.sec07;
 
 import com.example.webfluxplayground.test.sec07.dto.Product;
-import java.time.Duration;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.test.StepVerifier;
 
-public class Lec02FluxTest extends AbstractWebclient{
+public class Lec07BasicAuthTest extends AbstractWebclient{
     //webclient는 non-blocking이다
-    private final WebClient client = createWebClient();
+    private final WebClient client = createWebClient(b -> b.defaultHeaders(h -> h.setBasicAuth("java", "secret"
+            + "")));
     @Test
-    public void streamingResponse()  {
-        this.client.get()
-                .uri("/lec02/product/stream")
+    public void defaultHeader()  {
+        this.client.post()
+                .uri("/lec07/product/{id}", 1)
                 .retrieve()
-                .bodyToFlux(Product.class)
-                .take(Duration.ofSeconds(3).toMillis())
+                .bodyToMono(Product.class)
                 .doOnNext(print())
                 .then() //아무것도 downstream으로 넘기지 않는다.
                 .as(StepVerifier::create)

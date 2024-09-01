@@ -4,7 +4,14 @@ spring:
   sql:
     init:
       data-locations: classpath:sql/data.sql
-sec: sec05
+sec: sec09
+#enable gzip configuration
+#gzip를 쓸 때 client에서 "Accept-Encoding: gzip" 헤더를 보내야 함 그렇지 않으면 작동하지 않는다.
+server:
+  compression:
+    enabled: true
+    min-response-size: 2048
+    mime-types: application/json, application/xml
 #logging:
 #  level:
 #    org.springframework.r2dbc: DEBUG

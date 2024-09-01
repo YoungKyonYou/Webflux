@@ -29,7 +29,6 @@ public class Lec05ErrorResponseTest extends AbstractWebclient{
                 .onErrorReturn(WebClientResponseException.InternalServerError.class, new CalculatorResponse(0,0,null,-1.0))
                 .onErrorReturn(WebClientResponseException.BadRequest.class, new CalculatorResponse(0,0,null,-1.0))
                 .doOnNext(print())
-                //subscribe를 해야 실제로 동작한다.!!
                 .then() //아무것도 downstream으로 넘기지 않는다.
                 .as(StepVerifier::create)
                 .expectComplete()
@@ -43,7 +42,6 @@ public class Lec05ErrorResponseTest extends AbstractWebclient{
                 .header("operation", "+")
                 .exchangeToMono(this::decode)
                 .doOnNext(print())
-                //subscribe를 해야 실제로 동작한다.!!
                 .then() //아무것도 downstream으로 넘기지 않는다.
                 .as(StepVerifier::create)
                 .expectComplete()
